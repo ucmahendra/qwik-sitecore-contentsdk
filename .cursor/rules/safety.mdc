@@ -1,0 +1,17 @@
+---
+description: Safety rules for artifacts, secrets, and API security
+alwaysApply: false
+globs:
+  - 'packages/**'
+  - 'samples/**'
+  - 'scripts/**'
+---
+
+# Safety
+
+- **Never edit:** `dist/**`, `.next/`, `out/`, `build/`, `node_modules/`
+- **Secrets:** never commit `.env`; use `.env.*.example` with placeholders only; never log API keys or tokens
+- **API:** env vars for endpoints and keys; HTTPS for XM Cloud; no secrets in client code
+- **Rendering:** prefer Sitecore field components; sanitize/validate external content
+
+Full detail: [`.agents/docs/RULES-safety.md`](../../.agents/docs/RULES-safety.md)

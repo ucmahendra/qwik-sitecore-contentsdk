@@ -1,0 +1,15 @@
+---
+description: Example agent tasks for adding utilities, fixing tests, and changing scaffolding templates
+alwaysApply: false
+globs:
+  - 'packages/**/src/**'
+  - 'packages/create-content-sdk-app/src/templates/**'
+---
+
+# Example agent tasks
+
+- **Add utility:** export from package `index.ts` if public; JSDoc; tests; `yarn api-extractor` if public API changes
+- **Fix test:** `yarn test-packages` or `cd packages/<name> && yarn test`; preserve intended behavior
+- **Change template:** edit under `packages/create-content-sdk-app/src/templates/`; verify with `yarn watch` or `yarn scaffold-samples` + `npm run build`
+
+Full workflows: [`.agents/docs/AGENTS-workflows.md`](../../.agents/docs/AGENTS-workflows.md)

@@ -1,0 +1,23 @@
+---
+description: Sitecore SDK-specific rules for XM Cloud development
+alwaysApply: false
+globs:
+  - '**/*sitecore*.ts'
+  - '**/*sitecore*.tsx'
+  - '**/*content*.ts'
+  - '**/*content*.tsx'
+  - '**/sitecore.config.ts'
+  - '**/sitecore.cli.config.ts'
+  - 'packages/content/**'
+  - 'packages/nextjs/**'
+  - 'packages/react/**'
+---
+
+# Sitecore SDK
+
+- **Config:** env vars in `sitecore.config.ts`; never hardcode API keys
+- **Client:** `getPage`, `getDictionary`, `getPreview`, `getErrorPage` via Sitecore client
+- **Components:** register in component map; validate fields; use `<Text>`, `<RichText>`, `<Image>`
+- **Placeholders:** strongly-typed names; fallback for missing content
+
+Full detail: [`.agents/docs/RULES-sitecore.md`](../../.agents/docs/RULES-sitecore.md)

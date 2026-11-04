@@ -1,0 +1,43 @@
+html {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.contentBlock {
+  margin: 1.5rem 0;
+}
+
+.contentTitle {
+  margin: 0 0 0.5rem;
+}
+
+.layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.title-centered {
+  text-align: center;
+}
+
+.title-font-small {
+  font-size: 1rem;
+}
+
+.title-font-medium {
+  font-size: 1.5rem;
+}
+
+.title-font-large {
+  font-size: 2rem;
+}
+
+.component.title {
+  margin: 1rem 0;
+}

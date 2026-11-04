@@ -1,0 +1,17 @@
+---
+description: Repository structure and templates policy
+alwaysApply: false
+globs:
+  - 'packages/create-content-sdk-app/**'
+  - 'samples/**'
+---
+
+# Repository structure
+
+**Templates:** `packages/create-content-sdk-app/src/templates/` — copied to generated apps; self-contained; `.env.*.example` for env values.
+
+**Initializers:** `Initializer.init(args)` in `packages/create-content-sdk-app/src/initializers/`. Reuse `src/common/` processes.
+
+**Samples:** `yarn scaffold-samples`; inside `samples/` use that app's `AGENTS.md`.
+
+Full layout and package map: [`.agents/docs/AGENTS-repo-and-packages.md`](../../.agents/docs/AGENTS-repo-and-packages.md)

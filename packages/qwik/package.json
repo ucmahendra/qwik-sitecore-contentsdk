@@ -1,0 +1,88 @@
+{
+  "name": "@sitecore-content-sdk/qwik",
+  "version": "0.1.0",
+  "description": "Qwik components and utilities for Sitecore Content SDK (exploratory)",
+  "main": "dist/cjs/index.js",
+  "module": "src/index.ts",
+  "qwik": "src/index.ts",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig-esm.json",
+    "clean": "del-cli dist types",
+    "lint": "eslint \"./src/**/*.tsx\" \"./src/**/*.ts\"",
+    "test": "mocha --require ts-node/register \"./src/**/*.test.ts\" --exit",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "author": {
+    "name": "Sitecore Corporation",
+    "url": "https://doc.sitecore.com/xmc/en/developers/content-sdk/index.html"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://doc.sitecore.com/xmc/en/developers/content-sdk/index.html",
+  "bugs": {
+    "url": "https://github.com/sitecore/content-sdk/issues"
+  },
+  "peerDependencies": {
+    "@builder.io/qwik": "^1.20.0",
+    "@builder.io/qwik-city": "^1.20.0"
+  },
+  "dependencies": {
+    "@sitecore-content-sdk/content": "^2.2.1",
+    "@sitecore-content-sdk/core": "^2.1.2"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "^1.20.0",
+    "@builder.io/qwik-city": "^1.20.0",
+    "@stylistic/eslint-plugin": "^5.2.2",
+    "@types/chai": "^5.2.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.10.4",
+    "@typescript-eslint/eslint-plugin": "8.39.0",
+    "@typescript-eslint/parser": "8.39.0",
+    "chai": "^4.4.1",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jsdoc": "52.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^11.2.2",
+    "prettier": "^2.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3"
+  },
+  "types": "src/index.ts",
+  "files": [
+    "dist",
+    "types",
+    "src",
+    "/*.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./dist/cjs/index.js",
+      "default": "./src/index.ts"
+    },
+    "./config": {
+      "types": "./src/config/index.ts",
+      "import": "./src/config/index.ts",
+      "require": "./dist/cjs/config/index.js",
+      "default": "./src/config/index.ts"
+    },
+    "./editing": {
+      "types": "./src/editing/index.ts",
+      "import": "./src/editing/index.ts",
+      "require": "./dist/cjs/editing/index.js",
+      "default": "./src/editing/index.ts"
+    }
+  }
+}

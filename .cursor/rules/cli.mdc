@@ -1,0 +1,18 @@
+---
+description: CLI behavior, prompts, init flow, next steps
+alwaysApply: false
+globs:
+  - 'packages/create-content-sdk-app/src/initializers/**'
+  - 'packages/create-content-sdk-app/src/initialize.ts'
+  - 'packages/create-content-sdk-app/src/index.ts'
+  - 'packages/create-content-sdk-app/src/bin.ts'
+  - 'packages/create-content-sdk-app/src/common/processes/**'
+---
+
+# CLI
+
+- Drive init via `Initializer.init(args)`
+- Clear prompts and defaults; install dependencies after scaffolding; print next steps
+- Backwards compatible arg names; additive changes with defaults
+
+Full detail: [`.agents/docs/AGENTS-workflows.md`](../../.agents/docs/AGENTS-workflows.md#cli-create-content-sdk-app)

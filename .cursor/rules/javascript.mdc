@@ -1,0 +1,19 @@
+---
+description: JavaScript/TypeScript-specific rules, naming conventions, and layout
+alwaysApply: false
+globs:
+  - '**/*.js'
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.mjs'
+---
+
+# TypeScript / JavaScript
+
+- **Strict mode**; prefer explicit types over `any`
+- **Naming:** camelCase (vars/fns), PascalCase (components/types), UPPER_SNAKE (constants), kebab-case (dirs)
+- **JSDoc** on new public APIs (`@param`, `@returns`)
+- **Errors:** fail fast with context; guard clauses at boundaries
+- **Security:** sanitize inputs; never expose secrets in client code or logs
+
+Full detail: [`.agents/docs/RULES-javascript.md`](../../.agents/docs/RULES-javascript.md)

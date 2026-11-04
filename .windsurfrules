@@ -1,0 +1,11 @@
+# Sitecore Content SDK — Monorepo
+
+**Primary:** [`AGENTS.md`](AGENTS.md) — commands, package structure, boundaries, DO/DON'T.
+
+**Layering:** [`CLAUDE.md`](CLAUDE.md) — start with `AGENTS.md`; open one [`.cursor/rules/`](.cursor/rules/) file when the task needs it.
+
+**Capabilities:** [`Skills.md`](Skills.md) — template skills under `packages/create-content-sdk-app/src/templates/`.
+
+**Commands:** `yarn install`, `yarn build`, `yarn test-packages`, `yarn lint-packages`. Never edit `dist/**` or commit secrets.
+
+**Docs:** [Content SDK](https://doc.sitecore.com/sai/en/developers/content-sdk/sitecore-content-sdk-for-sitecoreai.html)

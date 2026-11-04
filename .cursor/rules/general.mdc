@@ -1,0 +1,16 @@
+---
+description: Core coding principles and universal standards for the Content SDK
+alwaysApply: false
+globs:
+  - 'packages/**/src/**'
+---
+
+# General principles
+
+Follow [`AGENTS.md`](../../AGENTS.md) guardrails. Prefer small, focused changes; match existing patterns in the package you edit.
+
+- DRY, SOLID, explicit naming
+- Validate inputs at boundaries; never log secrets
+- Run `yarn build` / `yarn test-packages` after substantive edits
+
+More: [`.agents/docs/RULES-general-principles.md`](../../.agents/docs/RULES-general-principles.md) · [`.cursor/rules/code-style.mdc`](./code-style.mdc) · [`.cursor/rules/safety.mdc`](./safety.mdc)

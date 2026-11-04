@@ -1,0 +1,16 @@
+---
+description: Code style, error handling, logging, imports, lint/format
+alwaysApply: false
+globs:
+  - 'packages/**/src/**'
+  - 'scripts/**'
+---
+
+# Code style
+
+- **TypeScript strict**; explicit types; pure functions where possible; no top-level side effects (except CLI entry)
+- **Errors:** fail fast with context; custom error classes for domain errors
+- **Imports:** relative for local modules; never from `dist/`; barrel exports via `index.ts`
+- **Lint:** keep ESLint + Prettier passing
+
+Full detail: [`.agents/docs/RULES-code-style.md`](../../.agents/docs/RULES-code-style.md)

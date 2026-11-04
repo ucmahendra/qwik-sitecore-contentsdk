@@ -1,0 +1,114 @@
+'use client';
+import React, { useEffect, useRef, useState } from 'react';
+import { ComponentRendering } from '@sitecore-content-sdk/content/layout';
+import * as analyticsCoreInternalModule from '@sitecore-content-sdk/analytics-core/internal';
+import { form } from '@sitecore-content-sdk/content';
+import { constants } from '@sitecore-content-sdk/core';
+import { useSitecore } from './SitecoreProvider';
+import { ErrorComponent } from './ErrorBoundary';
+
+const { ERROR_MESSAGES } = constants;
+
+let { executeScriptElements, loadForm, subscribeToFormSubmitEvent } = form;
+let { isBotClientSide } = analyticsCoreInternalModule;
+
+/**
+ * Mock function to replace the form module functions for `testing` purposes.
+ * @param {any} formModule - The form module to mock
+ */
+export const mockFormModule = (formModule: any) => {
+  executeScriptElements = formModule.executeScriptElements;
+  loadForm = formModule.loadForm;
+  subscribeToFormSubmitEvent = formModule.subscribeToFormSubmitEvent;
+};
+
+export const mockAnalyticsInternalModule = (analyticsCoreInternalModule: any) => {
+  isBotClientSide = analyticsCoreInternalModule.isBotClientSide;
+};
+
+/**
+ * Shape of the Form component rendering data.
+ * FormId is the rendering parameter that specifies the ID of the Sitecore Form to render.
+ */
+export type FormProps = {
+  rendering: ComponentRendering;
+  params: {
+    /**
+     * The ID of the Sitecore Form to render.
+     */
+    FormId: string;
+    /**
+     * CSS class to apply to the form
+     */
+    styles?: string;
+    /**
+     * The unique identifier of the rendering.
+     */
+    RenderingIdentifier?: string;
+  };
+};
+
+/**
+ * The Form component.
+ * @param {FormProps} props incoming props
+ * @public
+ */
+export const Form = ({ params, rendering }: FormProps) => {
+  const id = params?.RenderingIdentifier;
+  const [error, setError] = useState(false);
+  const [content, setContent] = useState('');
+  const context = useSitecore();
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const isEditing = context.page.mode.isEditing;
+
+  // fetch form content
+  useEffect(() => {
+    if (!content) {
+      // Forms must use clientContextId since they are rendered client-side
+      const edgeId = context.api?.edge?.clientContextId;
+
+      if (!edgeId) {
+        /* eslint-disable no-console */
+        console.warn(`${ERROR_MESSAGES.MV_006}. Form cannot be loaded properly on the client`);
+        return;
+      }
+
+      loadForm(edgeId, params.FormId, context.api?.edge?.edgeUrl)
+        .then(setContent)
+        .catch(() => {
+          if (isEditing) {
+            console.error(
+              `Failed to load form with id ${params.FormId}. Check debug logs for content-sdk:form for more details. ${ERROR_MESSAGES.CONTACT_SUPPORT}`
+            );
+          }
+          setError(true);
+        });
+    }
+  }, [
+    content,
+    isEditing,
+    params.FormId,
+    context.api?.edge?.clientContextId,
+    context.api?.edge?.edgeUrl,
+  ]);
+
+  // Set innerHTML and execute scripts whenever form content changes
+  useEffect(() => {
+    if (!content || !formRef.current) return;
+
+    formRef.current.innerHTML = content;
+    executeScriptElements(formRef.current);
+
+    // If we are in editing mode, we don't want to send any events
+    if (!isEditing && !isBotClientSide()) {
+      subscribeToFormSubmitEvent(formRef.current, rendering.uid);
+    }
+  }, [content, isEditing, rendering.uid]);
+
+  if (isEditing && error) {
+    return <ErrorComponent message="There was a problem loading this section" />;
+  }
+
+  return <div ref={formRef} className={params.styles?.trimEnd()} id={id ? id : undefined}></div>;
+};

@@ -1,0 +1,17 @@
+---
+description: Test strategy with Mocha/Sinon/Chai and NYC coverage
+alwaysApply: false
+globs:
+  - '**/*.test.ts'
+  - '**/*.spec.ts'
+  - 'packages/**/.nycrc'
+  - 'coverage/**'
+---
+
+# Testing
+
+- Mocha + Sinon + Chai; nearby `*.test.ts` with success + failure cases
+- Stub child-process and `fs` as needed
+- **Run:** `yarn test-packages`, `yarn coverage-packages`; per-package `yarn test`
+
+Full detail: [`.agents/docs/AGENTS-workflows.md`](../../.agents/docs/AGENTS-workflows.md#testing)
